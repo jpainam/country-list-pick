@@ -1,3 +1,5 @@
+import 'package:country_list_pick/support/code_countrys.dart';
+
 mixin ToAlias {}
 
 @deprecated
@@ -25,4 +27,28 @@ class CountryCode {
   String toLongString() => "$dialCode $name";
 
   String toCountryStringOnly() => '$name';
+
+    factory CountryCode.fromCode(String isoCode) {
+    final Map<String, String> jsonCode = codes.firstWhere(
+      (code) => code['code'] == isoCode,
+      orElse: () => null,
+    );
+
+    if (jsonCode == null) {
+      return null;
+    }
+
+    return CountryCode.fromJson(jsonCode);
+  }
+
+ 
+
+  factory CountryCode.fromJson(Map<String, dynamic> json) {
+    return CountryCode(
+      name: json['name'],
+      code: json['code'],
+      dialCode: json['dial_code'],
+      flagUri: 'flags/${json['code'].toLowerCase()}.png',
+    );
+  }
 }
