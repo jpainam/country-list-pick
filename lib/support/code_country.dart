@@ -32,7 +32,7 @@ class CountryCode {
     final Map<String, String> jsonCode = codes.firstWhere(
       (code) => code['code'] == isoCode,
       orElse: () => null,
-    );
+    ).map((a, b) => MapEntry(a as String, b as String));
 
     if (jsonCode == null) {
       return null;

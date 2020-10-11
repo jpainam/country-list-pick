@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
+    print("Printing country from code ${CountryCode.fromCode('CM')}");
     super.initState();
   }
 
